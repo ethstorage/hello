@@ -36,7 +36,7 @@
     <div class="footer">
       <div class="footer-layout">
         <el-row>
-          <a href="https://github.com/ethstorage/web3url-website" target="_blank">
+          <a href="https://github.com/ethstorage/hello-web3" target="_blank">
             <img class="footer-img" src="@/assets/git.png">
           </a>
           <a href="https://twitter.com/EthStorage" target="_blank">
