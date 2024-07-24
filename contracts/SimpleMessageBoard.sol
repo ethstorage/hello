@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-interface IFlatDirectoryFactor {
+interface IFlatDirectoryFactory {
     function create() external returns (address);
 }
 
@@ -51,7 +51,7 @@ contract SimpleMessageBoard {
     uint256 public messageCount;
     IFlatDirectory public fileFD;
 
-    constructor(IFlatDirectoryFactor _factory) {
+    constructor(IFlatDirectoryFactory _factory) {
         address fd = _factory.create();
         fileFD = IFlatDirectory(fd);
     }
