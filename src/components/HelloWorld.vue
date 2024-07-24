@@ -10,7 +10,7 @@
           message board where anyone can send messages to the contract to leave a message.
           <p>Command:</p>
           <p style="background: #CCCCCC; color: green; padding: 3px">
-            cast send 0xc6c3777261352BE0071e3e15263EB105096485E5 "writeMessage(string)" "YOUR_MESSAGE_CONTENT" --private-key YOUR_PRIVATE_KEY -r http://65.109.20.29:8545
+            cast send 0x40cAb425DEfC6f3c3D0EA4D236036CE7D2A813d8 "writeMessage(string)" "YOUR_MESSAGE_CONTENT" --private-key YOUR_PRIVATE_KEY -r http://65.109.20.29:8545
           </p>
         </div>
 
@@ -61,12 +61,10 @@
 import { ethers } from "ethers";
 
 const MessagesAbi = [
-  "function getMessages() public view returns (bytes[] memory contents, bytes[] memory users, bytes[] memory timestamps)"
+  "function getMessages() public view returns (address[] memory authors, uint256[] memory timestamps, string[] memory contents)"
 ];
-const ContractAddress = "0xc6c3777261352BE0071e3e15263EB105096485E5";
+const ContractAddress = "0x40cAb425DEfC6f3c3D0EA4D236036CE7D2A813d8";
 const RPC  = "https://rpc.testnet.l2.quarkchain.io:8545";
-
-const hexToString = (h) => ethers.toUtf8String(h);
 
 export default {
   name: 'HelloWorld',
@@ -94,14 +92,13 @@ export default {
       const contract = new ethers.Contract(ContractAddress, MessagesAbi, provider);
       const data = await contract.getMessages();
       if (data) {
-        const contents = data[0];
-        const users = data[1];
-        const timestamps = data[2];
+        const users = data[0];
+        const timestamps = data[1];
+        const contents = data[2];
         for (let i = 0; i < timestamps.length; i++) {
-          const time = hexToString(timestamps[i]).trim().replace("\u0000", "");
           this.messages.push({
-            content: hexToString(contents[i]) || "<empty>",
-            timestamp: Number(time) * 1000,
+            content: contents[i],
+            timestamp: Number(timestamps[i]) * 1000,
             user: users[i]
           });
         }
