@@ -36,7 +36,7 @@
     <div class="footer">
       <div class="footer-layout">
         <el-row>
-          <a href="https://github.com/ethstorage/w3box" target="_blank">
+          <a href="https://github.com/ethstorage/web3url-website" target="_blank">
             <img class="footer-img" src="@/assets/git.png">
           </a>
           <a href="https://twitter.com/EthStorage" target="_blank">
@@ -64,7 +64,7 @@ const MessagesAbi = [
   "function getMessages() public view returns (bytes[] memory contents, bytes[] memory users, bytes[] memory timestamps)"
 ];
 const ContractAddress = "0xc6c3777261352BE0071e3e15263EB105096485E5";
-const RPC  = "http://65.109.20.29:8545";
+const RPC  = "https://rpc.testnet.l2.quarkchain.io:8545";
 
 const hexToString = (h) => ethers.toUtf8String(h);
 
